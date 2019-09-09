@@ -1,5 +1,5 @@
 import javax.persistence.*;
-import java.util.Calendar;
+import java.util.Date;
 
 @Entity
 @Table(name = "Students")
@@ -13,7 +13,7 @@ public class Student {
 	private int age;
 
 	@Column(name = "registration_date")
-	private Calendar registrationDate;
+	private Date registrationDate;
 
 	public int getId() {
 		return id;
@@ -39,11 +39,11 @@ public class Student {
 		this.age = age;
 	}
 
-	public Calendar getRegistrationDate() {
+	public Date getRegistrationDate() {
 		return registrationDate;
 	}
 
-	public void setRegistrationDate(Calendar registrationDate) {
+	public void setRegistrationDate(Date registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 }
