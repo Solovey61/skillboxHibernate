@@ -14,6 +14,7 @@ public class Purchase {
 	@Column(name = "course_name")
 	private String courseName;
 
+	@Column(name = "price")
 	private int price;
 
 	@Column(name = "subscription_date")

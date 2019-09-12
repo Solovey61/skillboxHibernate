@@ -6,16 +6,20 @@ import java.util.List;
 public class Course {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
 
+	@Column(name = "name")
 	private String name;
 
+	@Column(name = "duration")
 	private int duration;
 
 	@Enumerated(EnumType.STRING)
-	@Column(columnDefinition = "enum")
+	@Column(name = "type", columnDefinition = "ENUM('DESIGN', 'PROGRAMMING', 'MARKETING', 'MANAGEMENT', 'BUSINESS')")
 	private CourseType type;
 
+	@Column(name = "description")
 	private String description;
 
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -24,12 +28,13 @@ public class Course {
 	@Column(name = "students_count")
 	private int studentsCount;
 
+	@Column(name = "price")
 	private int price;
 
 	@Column(name = "price_per_hour")
 	private float pricePerHour;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "Subscriptions",
 			joinColumns = {@JoinColumn(name = "course_id")},
 			inverseJoinColumns = {@JoinColumn(name = "student_id")}

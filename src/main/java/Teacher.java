@@ -4,13 +4,17 @@ import javax.persistence.*;
 @Table(name = "Teachers")
 public class Teacher {
 	@Id
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@Column(name = "name")
 	private String name;
 
+	@Column(name = "salary")
 	private int salary;
 
+	@Column(name = "age")
 	private int age;
 
 
