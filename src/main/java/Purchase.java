@@ -1,18 +1,14 @@
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
 @Table(name = "PurchaseList")
 public class Purchase {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-
-	@Column(name = "student_name")
-	private String studentName;
-
-	@Column(name = "course_name")
-	private String courseName;
+    @EmbeddedId
+	private PurchaseID id;
 
 	@Column(name = "price")
 	private int price;
@@ -20,6 +16,25 @@ public class Purchase {
 	@Column(name = "subscription_date")
 	private Date subscriptionDate;
 
+	public PurchaseID getId() {
+		return id;
+	}
+
+	public String getStudentName() {
+		return id.getStudentName();
+	}
+
+	public String getCourseName() {
+		return id.getCourseName();
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public Date getSubscriptionDate() {
+		return subscriptionDate;
+	}
 }
 
 //  SELECT Students.id student_id,
