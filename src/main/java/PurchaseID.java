@@ -1,20 +1,19 @@
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Embeddable
 public class PurchaseID implements Serializable {
-    @Column(name = "student_name")
-    private String studentName;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Course course;
 
-    @Column(name = "course_name")
-    private String courseName;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Student student;
 
-    public String getStudentName() {
-        return studentName;
+    public Course getCourse() {
+        return course;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public Student getStudent() {
+        return student;
     }
 }

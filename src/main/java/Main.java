@@ -15,10 +15,9 @@ public class Main {
 		Metadata metadata = new MetadataSources(registry).getMetadataBuilder().build();
 		SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
 		Session session = sessionFactory.openSession();
-		List<Purchase> courses = session.createQuery("From " + Purchase.class.getSimpleName()).getResultList();
-		courses.forEach(c -> {
-			List<Student> students = session.createQuery("from " + Student.class.getSimpleName() + " Where name='" + c.getStudentName() +"'" ).getResultList();
-			students.forEach(s -> System.out.println(s.getId()));
+		List<Purchase> purchases = session.createQuery("From " + Purchase.class.getSimpleName()).getResultList();
+		purchases.forEach(e -> {
+			System.out.println(e.getId().getCourse().getName() + "\t" + e.getId().getStudent().getName() + "\t" + e.getPrice() + "\t" + e.getSubscriptionDate());
 		});
 
 		sessionFactory.close();

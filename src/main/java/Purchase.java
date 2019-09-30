@@ -1,11 +1,17 @@
+import org.hibernate.annotations.Subselect;
+import org.hibernate.annotations.Synchronize;
+
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "PurchaseList")
+@Subselect("SELECT s.id student_id, c.id course_id, pu.price price, subscription_date " +
+		"FROM PurchaseList pu " +
+		"JOIN Students s ON student_name = s.name " +
+		"JOIN Courses c ON course_name = c.name")
+@Synchronize({"PurchaseList", "Students", "Courses"})
 public class Purchase {
     @EmbeddedId
 	private PurchaseID id;
@@ -18,14 +24,6 @@ public class Purchase {
 
 	public PurchaseID getId() {
 		return id;
-	}
-
-	public String getStudentName() {
-		return id.getStudentName();
-	}
-
-	public String getCourseName() {
-		return id.getCourseName();
 	}
 
 	public int getPrice() {
